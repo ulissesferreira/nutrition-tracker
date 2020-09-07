@@ -1,0 +1,27 @@
+{
+  "name": "nutrition-tracker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ulissesferreira/nutrition-tracker.git",
+  "author": "Ulisses Ferreira <ulissesvf@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only ./src/app.ts",
+    "build": "tsc",
+    "start": "node ./build/app.js",
+    "prod": "tsc && node ./build/app.js"
+  },
+  "dependencies": {
+    "@promster/fastify": "^3.1.11",
+    "dotenv": "^8.2.0",
+    "fastify": "^3.3.0",
+    "fastify-cookie": "^4.0.2",
+    "fastify-cors": "^4.1.0",
+    "prom-client": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.6.4",
+    "ts-node-dev": "^1.0.0-pre.62",
+    "typescript": "^4.0.2"
+  }
+}
