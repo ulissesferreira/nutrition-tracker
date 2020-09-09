@@ -23,11 +23,13 @@ fastify.register(require('fastify-cookie'), {
 /*
  * Routes import and register
  */
-const auth = require('./routes/v1/auth')
 const metrics = require('./routes/v1/metrics')
+const auth = require('./routes/v1/auth')
+const food = require('./routes/v1/food')
 
-fastify.register(auth, { prefix: '/auth' })
 fastify.register(metrics, { prefix: '/metrics' })
+fastify.register(auth, { prefix: '/auth' })
+fastify.register(food, { prefix: '/food' })
 
 const start = async () => {
   try {
