@@ -1,12 +1,13 @@
 require('dotenv').config()
+const mongoose = require('mongoose')
 
 const fastify = require('fastify')({ logger: true })
 
 /*
  * Prometheus metrics
  */
-const { plugin: promsterPlugin } = require('@promster/fastify');
-fastify.register(promsterPlugin);
+const { plugin: promsterPlugin } = require('@promster/fastify')
+fastify.register(promsterPlugin)
 
 /*
  *  Register fastify plugins
@@ -33,7 +34,14 @@ fastify.register(food, { prefix: '/food' })
 
 const start = async () => {
   try {
-    await fastify.listen(process.env.PORT)
+    console.log(`mongodb://${process.env.DB_URL}:27017`)
+    await mongoose.connect(`mongodb://${process.env.DB_URL}:27017/nutrition-tracker`, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+      useCreateIndex: true
+    });
+    await fastify.listen(process.env.PORT, '0.0.0.0')
     fastify.log.info(`server listening on ${fastify.server.address().port}`)
   } catch (err) {
     fastify.log.error(err)
